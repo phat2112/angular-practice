@@ -1,0 +1,122 @@
+<p>structual-directive works!</p>
+
+<!-- ngIf -->
+<!-- way 1: using ng template remove from DOM -->
+<!-- <app-hi *ngIf="age >= 5 else under5" [name]="name"></app-hi> -->
+
+<!-- <ng-template #under5>
+    <p>You are too young to see this content</p>
+</ng-template> -->
+
+
+<!-- way2: using hidden not remove from DOM -->
+<app-hi [hidden]="age < 5" [name]="name"></app-hi>
+
+<button (click)="increment()">increment</button>
+<p>current age: {{ age }}</p>
+<button (click)="decrement()">decrement</button>
+<br><br><br>
+
+<!-- ngFor -->
+<!-- 
+    ----ngFor property----
+    - $implicit item in array
+    - index as index in array
+    - count as max length in array
+    - first as first index of array
+    - last as last index of array
+    - even as even index of array
+    - odd as odd index of array
+ -->
+<h3>Ng for</h3>
+<ul>
+    <li *ngFor="let user of users; index as idx, count as total; first as isFirst; last as isLast; even as isEven; odd as isOdd">
+        <span>{{user.name}} - {{user.age}} - {{user.phone}}</span>
+        <br>
+        <span>{{idx}} out of {{total}}</span>
+        <div *ngIf="isFirst">
+            <br>
+            <span>I am First</span>
+        </div>
+        <div *ngIf="isLast">
+            <br>
+            <span>I am Last</span>
+        </div>
+        <div *ngIf="isEven">
+            <br>
+            <span>I am Even</span>
+        </div>
+        <div *ngIf="isOdd">
+            <br>
+            <span>I am Odd</span>
+        </div>
+        <br><br><br>
+    </li>
+</ul>
+
+<ul>
+    <!-- can't check ngIf into an element that using ngFor, creating an element using ngIf wrapper instead -->
+    <ng-container *ngIf="anotherUsers.length > 0 else noUser">
+        <li *ngFor="let user of users; index as idx, count as total; first as isFirst; last as isLast; even as isEven; odd as isOdd">
+            <span>{{user.name}} - {{user.age}} - {{user.phone}}</span>
+            <br>
+            <span>{{idx}} out of {{total}}</span>
+            <div *ngIf="isFirst">
+                <br>
+                <span>I am First</span>
+            </div>
+            <div *ngIf="isLast">
+                <br>
+                <span>I am Last</span>
+            </div>
+            <div *ngIf="isEven">
+                <br>
+                <span>I am Even</span>
+            </div>
+            <div *ngIf="isOdd">
+                <br>
+                <span>I am Odd</span>
+            </div>
+            <br><br><br>
+        </li>
+    </ng-container>
+    <ng-template #noUser>
+        <p>No Users</p>
+    </ng-template>
+</ul>
+
+<br><br><br>
+<!-- benefit of ngFor property -->
+<span *ngFor="let item of stringArr; last as isLast" [class.marginRight]="!isLast">
+   {{item}}
+</span>
+
+
+<!-- way to write ngFor in ng-template -->
+
+<!-- <ul>
+    <ng-template ngFor [ngForOf]="users" let-user let-idx="index" let-total="count" let-isFirst="first" let-isLast="last" let-isEven="even" let-isOdd="odd">
+        <li>
+            <span>{{user.name}} - {{user.age}} - {{user.phone}}</span>
+            <br>
+            <span>{{idx}} out of {{total}}</span>
+            <div *ngIf="isFirst">
+                <br>
+                <span>I am First</span>
+            </div>
+            <div *ngIf="isLast">
+                <br>
+                <span>I am Last</span>
+            </div>
+            <div *ngIf="isEven">
+                <br>
+                <span>I am Even</span>
+            </div>
+            <div *ngIf="isOdd">
+                <br>
+                <span>I am Odd</span>
+            </div>
+            <br><br><br>
+        </li>
+    </ng-template>
+</ul> -->

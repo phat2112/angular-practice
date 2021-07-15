@@ -1,0 +1,15 @@
+<p>data-binding works!</p>
+
+<p>{{user.name}}</p>
+<p>{{user.age}}</p>
+<p>{{name}}</p>
+
+
+<input type="text" [value]="user.name">
+<input type="text" [value]="user.age">
+
+<input type="button" (click)="handleClick()">
+
+<br><br>
+
+<input type="text" [(ngModel)]="name" >
