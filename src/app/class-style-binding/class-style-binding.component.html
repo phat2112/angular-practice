@@ -1,0 +1,34 @@
+<p>class-style-binding works!</p>
+
+<!-- 
+    ----class binding----
+    - [class.className]="variable"
+    - [class]=array
+    - [class]=object -> [class]="{[className: string as Keys]: boolean}"
+    - [class]="variable"
+
+
+    ----style binding----
+    same as class binding
+  -->
+
+<button (click)="isDanger = !isDanger">Toggle Danger</button>
+
+<button (click)="isWarning = !isWarning">Toggle warning</button>
+
+<br><br>
+<!-- [class.className]=variable -->
+<div class="box" [class.redBorder]="isDanger" [class.warning]="isWarning"></div>
+
+<br><br>
+<!-- [class]=array -->
+<div class="box" [class]="['redBorder', 'warning']"></div>
+
+<br><br>
+<!-- [class]=object -->
+<div class="box" [class]="{'redBorder': isDanger, 'isWarning': isWarning}"></div>
+
+<br><br>
+<!-- [class]="variable" -->
+<div class="box" [class]="class"></div>
+
